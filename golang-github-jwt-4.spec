@@ -2,7 +2,7 @@
 %bcond_without check
 
 # https://github.com/golang-jwt/jwt
-%global goipath         github.com/golang-jwt/jwt
+%global goipath         github.com/golang-jwt/jwt/v4
 Version:                4.0.0
 
 %gometa
@@ -15,7 +15,7 @@ Community maintained clone of https://github.com/dgrijalva/jwt-go.}
                         cmd/jwt/README.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Community maintained clone of https://github.com/dgrijalva/jwt-go
 
 License:        MIT
