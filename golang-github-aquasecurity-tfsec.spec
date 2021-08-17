@@ -21,7 +21,6 @@ Summary:        Security scanner for your Terraform code
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
-Patch0:         0001-Remove-updater.patch
 
 BuildRequires:  golang(github.com/apparentlymart/go-cidr/cidr)
 BuildRequires:  golang(github.com/bmatcuk/doublestar)
