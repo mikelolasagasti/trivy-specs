@@ -3,7 +3,7 @@
 
 # https://github.com/liamg/gifwrap
 %global goipath         github.com/liamg/gifwrap
-Version:                0.0.6
+Version:                0.0.4
 
 %gometa
 
