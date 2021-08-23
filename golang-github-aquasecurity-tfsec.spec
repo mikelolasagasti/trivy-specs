@@ -68,6 +68,8 @@ BuildRequires:  golang(github.com/stretchr/testify/require)
 %goprep
 
 %build
+export LDFLAGS="-X github.com/aquasecurity/tfsec/version.Version=%{version} -s -w -extldflags '-fno-PIC -static'"
+
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
