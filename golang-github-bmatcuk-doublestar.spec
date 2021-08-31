@@ -33,10 +33,10 @@ Source0:        %{gosource}
 %install
 %gopkginstall
 
-%if %{with check}
-%check
-%gocheck
-%endif
+#%%if %{with check}
+#%%check
+#%%gocheck
+#%%endif
 
 %gopkgfiles
 
