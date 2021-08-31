@@ -3,7 +3,7 @@
 
 # https://github.com/bmatcuk/doublestar
 %global goipath         github.com/bmatcuk/doublestar
-Version:                4.0.2
+Version:                1.3.4
 
 %gometa
 
@@ -41,6 +41,6 @@ Source0:        %{gosource}
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 4.0.2-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.3.4-1%
 - Initial package
 
