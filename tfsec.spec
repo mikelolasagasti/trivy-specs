@@ -3,7 +3,7 @@
 
 # https://github.com/aquasecurity/tfsec
 %global goipath         github.com/aquasecurity/tfsec
-Version:                0.58.4
+Version:                0.58.6
 
 %gometa
 
@@ -14,7 +14,7 @@ Security scanner for your Terraform code.}
 %global godocs          example CODE_OF_CONDUCT.md rules.md SIGNING.md\\\
                         CONTRIBUTING.md README.md examples
 
-Name:           %{goname}
+Name:           tfsec
 Release:        1%{?dist}
 Summary:        Security scanner for your Terraform code
 
@@ -68,7 +68,7 @@ BuildRequires:  golang(github.com/stretchr/testify/require)
 %goprep
 
 %build
-export LDFLAGS="-X github.com/aquasecurity/tfsec/version.Version=%{version} -s -w -extldflags '-fno-PIC -static'"
+export LDFLAGS="-X github.com/aquasecurity/tfsec/version.Version=%{version}"
 
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
@@ -87,12 +87,11 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE
 %doc example CODE_OF_CONDUCT.md rules.md SIGNING.md CONTRIBUTING.md README.md
-%doc examples
 %{_bindir}/*
 
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.58.4-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.58.4-1
 - Initial package
 
