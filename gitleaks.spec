@@ -46,7 +46,7 @@ BuildRequires:  golang(golang.org/x/sync/errgroup)
 %goprep
 
 %build
-%gobuild -o %{gobuilddir}/bin/gitleaks %{goipath}/bin/gitleaks
+%gobuild -o %{gobuilddir}/bin/gitleaks %{goipath}
 
 %install
 %gopkginstall
