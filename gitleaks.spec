@@ -13,7 +13,7 @@ Scan git repos (or files) for secrets using regex and entropy}
 %global golicenses      LICENSE
 %global godocs          examples README.md
 
-Name:           %{goname}
+Name:           gitleaks
 Release:        1%{?dist}
 Summary:        Scan git repos (or files) for secrets using regex and entropy
 
