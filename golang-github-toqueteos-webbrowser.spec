@@ -8,15 +8,15 @@ Version:                1.2.0
 %gometa
 
 %global common_description %{expand:
-:globe_with_meridians::snake: Python's webbrowser in Go. Simple API for opening
-web pages on your default browser.}
+Python's webbrowser in Go. Simple API for opening web pages on your
+default browser}
 
 %global golicenses      LICENSE.md
 %global godocs          CONTRIBUTING.md README.md
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        :globe_with_meridians::snake: Python's webbrowser in Go. Simple API for opening web pages on your default browser
+Summary:        Simple API for opening web pages on your default browser
 
 License:        MIT
 URL:            %{gourl}
@@ -41,6 +41,6 @@ Source0:        %{gosource}
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.2.0-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.2.0-1
 - Initial package
 
