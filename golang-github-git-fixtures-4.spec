@@ -51,6 +51,6 @@ BuildRequires:  golang(github.com/stretchr/testify/assert)
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 4.2.2-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 4.2.2-1
 - Initial package
 
