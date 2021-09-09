@@ -44,6 +44,6 @@ BuildRequires:  golang(gopkg.in/check.v1)
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 5.3.1-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 5.3.1-1
 - Initial package
 
