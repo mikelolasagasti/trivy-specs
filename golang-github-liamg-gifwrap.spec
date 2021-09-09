@@ -3,12 +3,12 @@
 
 # https://github.com/liamg/gifwrap
 %global goipath         github.com/liamg/gifwrap
-Version:                0.0.4
+Version:                0.0.6
 
 %gometa
 
 %global common_description %{expand:
-GIFs in your terminal.}
+GIFs in your terminal}
 
 %global golicenses      LICENSE
 %global godocs          README.md
@@ -55,6 +55,6 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.0.6-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.0.6-1
 - Initial package
 
