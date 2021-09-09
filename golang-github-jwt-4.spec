@@ -53,6 +53,6 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 4.0.0-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 4.0.0-1
 - Initial package
 
