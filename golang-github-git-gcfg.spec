@@ -8,14 +8,14 @@ Version:                1.5.0
 %gometa
 
 %global common_description %{expand:
-Go-gcfg/gcfg fork for usage in src-d/go-git.}
+Go-gcfg/gcfg fork for usage in go-git/go-git.}
 
 %global golicenses      LICENSE
 %global godocs          README
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        Go-gcfg/gcfg fork for usage in src-d/go-git
+Summary:        Go-gcfg/gcfg fork for usage in go-git/go-git
 
 # Upstream license specification: BSD-3-Clause
 License:        BSD
@@ -48,6 +48,6 @@ BuildRequires:  golang(github.com/pkg/errors)
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.5.0-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.5.0-1
 - Initial package
 
