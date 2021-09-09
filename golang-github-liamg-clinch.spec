@@ -8,14 +8,14 @@ Version:                1.5.6
 %gometa
 
 %global common_description %{expand:
-Go CLI toolkit :hammer:.}
+Go CLI toolkit.}
 
 %global golicenses      LICENSE
 %global godocs          _examples README.md
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        Go CLI toolkit :hammer:
+Summary:        Go CLI toolkit
 
 License:        Unlicense
 URL:            %{gourl}
@@ -44,6 +44,6 @@ BuildRequires:  golang(golang.org/x/crypto/ssh/terminal)
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.5.6-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.5.6-1
 - Initial package
 
