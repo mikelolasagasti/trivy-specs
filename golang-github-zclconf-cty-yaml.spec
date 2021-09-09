@@ -8,7 +8,7 @@ Version:                1.0.2
 %gometa
 
 %global common_description %{expand:
-YAML marshalling and unmarshalling for go-cty.}
+YAML marshalling and unmarshalling for go-cty}
 
 %global golicenses      LICENSE.libyaml NOTICE LICENSE
 %global godocs          CHANGELOG.md
@@ -45,6 +45,6 @@ BuildRequires:  golang(github.com/zclconf/go-cty/cty/function)
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.0.2-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.0.2-1
 - Initial package
 
