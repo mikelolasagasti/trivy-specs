@@ -8,14 +8,14 @@ Version:                1.0.11
 %gometa
 
 %global common_description %{expand:
-Go library for sarif - Static Analysis Results Interchange Format.}
+Go library for (SARIF) Static Analysis Results Interchange Format}
 
 %global golicenses      LICENSE
 %global godocs          example README.md
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        Go library for sarif - Static Analysis Results Interchange Format
+Summary:        Go library for (SARIF) Static Analysis Results Interchange Format
 
 License:        Unlicense
 URL:            %{gourl}
@@ -48,6 +48,6 @@ BuildRequires:  golang(github.com/stretchr/testify/require)
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.0.11-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.0.11-1
 - Initial package
 
