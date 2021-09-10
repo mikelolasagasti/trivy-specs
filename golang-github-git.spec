@@ -73,10 +73,11 @@ done
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
-%if %{with check}
-%check
-  %gocheck
-%endif
+# Too many tests require Internet connection
+#%%if %{with check}
+#%%check
+#%  %gocheck
+#%%endif
 
 %files
 %license LICENSE
