@@ -21,6 +21,7 @@ Summary:        Security scanner for your Terraform code
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
+Patch0001:      0001-Remove-update-option-for-cli.patch
 
 BuildRequires:  golang(github.com/apparentlymart/go-cidr/cidr)
 BuildRequires:  golang(github.com/bmatcuk/doublestar)
@@ -31,7 +32,6 @@ BuildRequires:  golang(github.com/hashicorp/hcl/v2)
 BuildRequires:  golang(github.com/hashicorp/hcl/v2/ext/tryfunc)
 BuildRequires:  golang(github.com/hashicorp/hcl/v2/hclparse)
 BuildRequires:  golang(github.com/hashicorp/hcl/v2/hclsyntax)
-BuildRequires:  golang(github.com/inconshreveable/go-update)
 BuildRequires:  golang(github.com/liamg/clinch/prompt)
 BuildRequires:  golang(github.com/liamg/clinch/terminal)
 BuildRequires:  golang(github.com/liamg/gifwrap/pkg/ascii)
@@ -66,6 +66,7 @@ BuildRequires:  golang(github.com/stretchr/testify/require)
 
 %prep
 %goprep
+%patch0001 -p1
 
 %build
 export LDFLAGS="-X github.com/aquasecurity/tfsec/version.Version=%{version}"
@@ -92,6 +93,6 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.58.4-1
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.58.6-1
 - Initial package
 

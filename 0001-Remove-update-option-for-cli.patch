@@ -1,0 +1,157 @@
+From 66724df034a200d5699b7267503f08d2139a1fbc Mon Sep 17 00:00:00 2001
+From: Mikel Olasagasti Uranga <mikel@olasagasti.info>
+Date: Sat, 11 Sep 2021 22:55:53 +0200
+Subject: [PATCH] Remove update option for cli
+
+---
+ cmd/tfsec/main.go                     |   8 --
+ internal/app/tfsec/updater/updater.go | 104 --------------------------
+ 2 files changed, 112 deletions(-)
+ delete mode 100644 internal/app/tfsec/updater/updater.go
+
+diff --git a/cmd/tfsec/main.go b/cmd/tfsec/main.go
+index 8aaacb8e..1e535c2f 100644
+--- a/cmd/tfsec/main.go
++++ b/cmd/tfsec/main.go
+@@ -13,7 +13,6 @@ import (
+ 	"github.com/aquasecurity/tfsec/pkg/severity"
+ 
+ 	"github.com/aquasecurity/tfsec/internal/app/tfsec/config"
+-	"github.com/aquasecurity/tfsec/internal/app/tfsec/updater"
+ 
+ 	"github.com/aquasecurity/tfsec/internal/app/tfsec/custom"
+ 
+@@ -64,7 +63,6 @@ func init() {
+ 	rootCmd.Flags().BoolVar(&disableColours, "no-colour", disableColours, "Disable coloured output")
+ 	rootCmd.Flags().BoolVar(&disableColours, "no-color", disableColours, "Disable colored output (American style!)")
+ 	rootCmd.Flags().BoolVarP(&showVersion, "version", "v", showVersion, "Show version information and exit")
+-	rootCmd.Flags().BoolVar(&runUpdate, "update", runUpdate, "Update to latest version")
+ 	rootCmd.Flags().StringVarP(&format, "format", "f", format, "Select output format: default, json, csv, checkstyle, junit, sarif")
+ 	rootCmd.Flags().StringVarP(&excludedRuleIDs, "exclude", "e", excludedRuleIDs, "Provide comma-separated list of rule IDs to exclude from run.")
+ 	rootCmd.Flags().StringVarP(&includedRuleIDs, "include", "i", includedRuleIDs, "Provide comma-separated list of specific rules to include in the from run.")
+@@ -117,12 +115,6 @@ var rootCmd = &cobra.Command{
+ 			os.Exit(0)
+ 		}
+ 
+-		if runUpdate {
+-			if err := updater.Update(); err != nil {
+-				_ = tml.Printf("Not updating, %s\n", err.Error())
+-			}
+-			os.Exit(0)
+-		}
+ 	},
+ 	RunE: func(cmd *cobra.Command, args []string) error {
+ 
+diff --git a/internal/app/tfsec/updater/updater.go b/internal/app/tfsec/updater/updater.go
+deleted file mode 100644
+index c2127cd7..00000000
+--- a/internal/app/tfsec/updater/updater.go
++++ /dev/null
+@@ -1,104 +0,0 @@
+-package updater
+-
+-import (
+-	"encoding/json"
+-	"fmt"
+-	"net/http"
+-	"runtime"
+-
+-	"github.com/aquasecurity/tfsec/internal/app/tfsec/debug"
+-	"github.com/aquasecurity/tfsec/version"
+-	semver "github.com/hashicorp/go-version"
+-	"github.com/inconshreveable/go-update"
+-	"github.com/liamg/tml"
+-)
+-
+-type githubRelease struct {
+-	TagName string `json:"tag_name"`
+-}
+-
+-func Update() error {
+-	if version.Version == "" {
+-		return fmt.Errorf("you are running a locally built version")
+-	}
+-
+-	latestAvailable, err := getLatestVersion()
+-	if err != nil {
+-		return err
+-	}
+-
+-	updateIfNewer(latestAvailable)
+-	return nil
+-}
+-
+-func getLatestVersion() (string, error) {
+-	resp, err := http.Get("https://api.github.com/repos/aquasecurity/tfsec/releases/latest")
+-	if err != nil {
+-		return "", err
+-	}
+-
+-	if resp.StatusCode != 200 {
+-		return "", fmt.Errorf("error occurred when trying to download latest release data")
+-	}
+-
+-	defer func() { _ = resp.Body.Close() }()
+-
+-	debug.Log("Getting latest available version")
+-	var release githubRelease
+-	if err := json.NewDecoder(resp.Body).Decode(&release); err != nil {
+-		return "", err
+-	}
+-
+-	debug.Log("Latest available release version is %s", release.TagName)
+-	return release.TagName, nil
+-}
+-
+-func isNewerVersion(latestVersion string) (bool, error) {
+-	debug.Log("Checking version details current [%s], latest [%s]", version.Version, latestVersion)
+-	v1, err := semver.NewVersion(version.Version)
+-	if err != nil {
+-		return false, err
+-	}
+-	v2, err := semver.NewVersion(latestVersion)
+-	if err != nil {
+-		return false, err
+-	}
+-
+-	return v1.LessThan(v2), nil
+-}
+-
+-func updateIfNewer(latest string) error {
+-	if newer, err := isNewerVersion(latest); err != nil {
+-		return err
+-	} else if !newer {
+-		return fmt.Errorf("current version is the latest version")
+-	}
+-
+-	downloadUrl := resolveDownloadUrl(latest)
+-	debug.Log("Downloading latest version from %s", downloadUrl)
+-	resp, err := http.Get(downloadUrl)
+-	if err != nil {
+-		return err
+-	}
+-
+-	if resp.StatusCode != 200 {
+-		return fmt.Errorf("failed to download the latest version of tfsec")
+-	}
+-
+-	defer func() { _ = resp.Body.Close() }()
+-
+-	if err := update.Apply(resp.Body, update.Options{}); err != nil {
+-		return err
+-	}
+-	tml.Printf("Updating from %s to %s\n", version.Version, latest)
+-	return nil
+-}
+-
+-func resolveDownloadUrl(latest string) string {
+-	suffix := ""
+-	if runtime.GOOS == "windows" {
+-		suffix = ".exe"
+-	}
+-
+-	return fmt.Sprintf("https://github.com/aquasecurity/tfsec/releases/download/%s/tfsec-%s-%s%s", latest, runtime.GOOS, runtime.GOARCH, suffix)
+-}
+-- 
+2.31.1
+
