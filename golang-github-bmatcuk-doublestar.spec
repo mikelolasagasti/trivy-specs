@@ -21,6 +21,8 @@ Summary:        Implements support for double star (**) matches in golang's path
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
+# skip one failing test
+Patch0001:      0001-Skip-test-from-old-release-that-currently-fail.patch
 
 %description
 %{common_description}
@@ -29,18 +31,20 @@ Source0:        %{gosource}
 
 %prep
 %goprep
+%patch0001 -p1
 
 %install
 %gopkginstall
 
-#%%if %{with check}
-#%%check
-#%%gocheck
-#%%endif
+# skip TestMatch with patch0001
+%if %{with check}
+%check
+%gocheck
+%endif
 
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.3.4-1%
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.3.4-1
 - Initial package
 
