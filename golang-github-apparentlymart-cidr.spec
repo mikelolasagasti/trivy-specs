@@ -39,6 +39,6 @@ Source0:        %{gosource}
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.1.0-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.1.0-1
 - Initial package
 
