@@ -8,14 +8,15 @@ Version:                0.2.28
 %gometa
 
 %global common_description %{expand:
-Telling tales on you for leaking secrets!}
+Scans a local git repository for secrets that are being leaked deep within the
+commit history}
 
 %global golicenses      LICENSE
 %global godocs          README.md
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        Telling tales on you for leaking secrets
+Summary:        Scans a local git repository for secrets that are being leaked deep within the commit history
 
 License:        Unlicense
 URL:            %{gourl}
@@ -65,6 +66,6 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.2.28-1%{?dist}
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.2.28-1
 - Initial package
 
