@@ -81,7 +81,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 # worktree_test.go -> TestPullAdd, TestCheckoutRelativePathSubmoduleInitialized
 # plumbing/transport/test
 
-#%%if %{with check}
+#if %%{with check}
 #%%check
 #%%gocheck
 #%%endif
