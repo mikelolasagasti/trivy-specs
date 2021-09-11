@@ -73,10 +73,17 @@ done
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
-# Too many tests require Internet connection
+# Disabling checks:
+# 1) Too many tests require Internet connection
+# 2) Some tests fail with current Fedora stack with --enable-network:
+# repository_test.go -> TestLogLimitWithOtherParamsPass, TestCreateTagAnnotatedBadOpts, TestResolveRevision
+# worktree_commit_test.go -> TestCommitEmptyOptions
+# worktree_test.go -> TestPullAdd, TestCheckoutRelativePathSubmoduleInitialized
+# plumbing/transport/test
+
 #%%if %{with check}
 #%%check
-#%  %gocheck
+#%%gocheck
 #%%endif
 
 %files
