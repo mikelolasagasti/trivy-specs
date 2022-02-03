@@ -45,6 +45,6 @@ BuildRequires: bsdiff
 %gopkgfiles
 
 %changelog
-* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0-0.1%{?dist}.20210817git8152e7e
+* Tue Aug 17 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0-0.1.20210817git8152e7e
 - Initial package
 
