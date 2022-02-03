@@ -3,7 +3,7 @@
 
 # https://github.com/zricethezav/gitleaks
 %global goipath         github.com/zricethezav/gitleaks
-Version:                7.6.0
+Version:                8.2.7
 
 %gometa
 
@@ -14,28 +14,12 @@ Scan git repos (or files) for secrets using regex and entropy}
 %global godocs          examples README.md
 
 Name:           gitleaks
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        Scan git repos (or files) for secrets using regex and entropy
 
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
-
-BuildRequires:  golang(github.com/BurntSushi/toml)
-BuildRequires:  golang(github.com/go-git/go-git/v5)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing/format/diff)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing/object)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing/storer)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing/transport)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing/transport/http)
-BuildRequires:  golang(github.com/go-git/go-git/v5/plumbing/transport/ssh)
-BuildRequires:  golang(github.com/go-git/go-git/v5/storage/memory)
-BuildRequires:  golang(github.com/hako/durafmt)
-BuildRequires:  golang(github.com/jessevdk/go-flags)
-BuildRequires:  golang(github.com/sergi/go-diff/diffmatchpatch)
-BuildRequires:  golang(github.com/sirupsen/logrus)
-BuildRequires:  golang(golang.org/x/sync/errgroup)
 
 %description
 %{common_description}
@@ -44,6 +28,9 @@ BuildRequires:  golang(golang.org/x/sync/errgroup)
 
 %prep
 %goprep
+
+%generate_buildrequires
+%go_generate_buildrequires
 
 %build
 %gobuild -o %{gobuilddir}/bin/gitleaks %{goipath}
@@ -66,6 +53,4 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-* Mon Sep 06 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 7.6.0-1
-- Initial package
-
+%autochangelog
