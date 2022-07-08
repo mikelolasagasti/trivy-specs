@@ -31,6 +31,7 @@ Source0:        %{gosource}
 
 %prep
 %goprep
+# Remove tests that require Internet connection
 rm get_gcs_test.go get_http_test.go get_s3_test.go
 
 %generate_buildrequires
