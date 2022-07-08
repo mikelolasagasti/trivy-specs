@@ -7,6 +7,8 @@ Version:                1.26.3
 
 %gometa
 
+%global goname tfsec
+
 %global common_description %{expand:
 Security scanner for your Terraform code.}
 
