@@ -41,7 +41,11 @@ Source0:        %{gosource}
 %if %{with check}
 %check
 # FIXME
-%gocheck -d pkg/auth/docker
+#/usr/share/gocode/src/github.com/docker/docker/registry/auth.go:144:51: cannot use challengeManager (variable of type "github.com/docker/distribution/registry/client/auth/challenge".Manager) as type "github.com/distribution/distribution/v3/registry/client/auth/challenge".Manager in argument to auth.NewAuthorizer:
+#	"github.com/docker/distribution/registry/client/auth/challenge".Manager does not implement "github.com/distribution/distribution/v3/registry/client/auth/challenge".Manager (wrong type for GetChallenges method)
+#		have GetChallenges(endpoint url.URL) ([]"github.com/docker/distribution/registry/client/auth/challenge".Challenge, error)
+#		want GetChallenges(endpoint url.URL) ([]"github.com/distribution/distribution/v3/registry/client/auth/challenge".Challenge, error)
+%gocheck -d pkg/auth/docker -d pkg/content
 %endif
 
 %gopkgfiles
