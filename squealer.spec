@@ -7,6 +7,8 @@ Version:                1.1.0
 
 %gometa
 
+%global goname squealer
+
 %global common_description %{expand:
 Telling tales on you for leaking secrets!}
 
