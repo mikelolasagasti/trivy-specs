@@ -45,7 +45,7 @@ Source0:        %{gosource}
 #	"github.com/docker/distribution/registry/client/auth/challenge".Manager does not implement "github.com/distribution/distribution/v3/registry/client/auth/challenge".Manager (wrong type for GetChallenges method)
 #		have GetChallenges(endpoint url.URL) ([]"github.com/docker/distribution/registry/client/auth/challenge".Challenge, error)
 #		want GetChallenges(endpoint url.URL) ([]"github.com/distribution/distribution/v3/registry/client/auth/challenge".Challenge, error)
-%gocheck -d pkg/auth/docker -d pkg/content
+%gocheck -d pkg/auth/docker -d pkg/content -d pkg/oras
 %endif
 
 %gopkgfiles
