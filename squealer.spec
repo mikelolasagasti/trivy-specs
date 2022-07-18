@@ -35,14 +35,20 @@ Source0:        %{gosource}
 %go_generate_buildrequires
 
 %build
-for cmd in cmd/* ; do
-  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
-done
+%gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
+
+%{gobuilddir}/cmd/%{name} completion bash > %{name}.bash
+%{gobuilddir}/cmd/%{name} completion fish > %{name}.fish
+%{gobuilddir}/cmd/%{name} completion zsh  > %{name}.zsh
 
 %install
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -Dp %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dp %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+
 
 %if %{with check}
 %check
@@ -53,6 +59,15 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license LICENSE
 %doc README.md
 %{_bindir}/*
+%dir %{_datadir}/bash-completion
+%dir %{_datadir}/bash-completion/completions
+%{_datadir}/bash-completion/completions/%{name}
+%dir %{_datadir}/fish
+%dir %{_datadir}/fish/vendor_completions.d
+%{_datadir}/fish/vendor_completions.d/%{name}.fish
+%dir %{_datadir}/zsh
+%dir %{_datadir}/zsh/site-functions
+%{_datadir}/zsh/site-functions/_%{name}
 
 %gopkgfiles
 
