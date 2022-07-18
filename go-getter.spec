@@ -38,9 +38,7 @@ rm get_gcs_test.go get_http_test.go get_s3_test.go
 %go_generate_buildrequires
 
 %build
-for cmd in cmd/* ; do
-  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
-done
+%gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
 %install
 %gopkginstall
