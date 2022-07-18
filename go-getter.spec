@@ -32,7 +32,7 @@ Source0:        %{gosource}
 %prep
 %goprep
 # Remove tests that require Internet connection
-rm get_gcs_test.go get_http_test.go get_s3_test.go
+rm get_gcs_test.go get_git_test.go get_http_test.go get_s3_test.go
 
 %generate_buildrequires
 %go_generate_buildrequires
@@ -43,7 +43,7 @@ rm get_gcs_test.go get_http_test.go get_s3_test.go
 %install
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -m 0755 -vp %{gobuilddir}/cmd/* %{buildroot}%{_bindir}/
 
 %if %{with check}
 %check
