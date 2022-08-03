@@ -11,7 +11,7 @@ Version:                8.9.0
 Scan git repos (or files) for secrets using regex and entropy}
 
 %global golicenses      LICENSE
-%global godocs          examples README.md
+%global godocs          CONTRIBUTING.md README.md
 
 Name:           gitleaks
 Release:        %autorelease
@@ -57,7 +57,7 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE
-%doc examples README.md
+%doc CONTRIBUTING.md README.md
 %{_bindir}/*
 %dir %{_datadir}/bash-completion
 %dir %{_datadir}/bash-completion/completions
