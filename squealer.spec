@@ -10,14 +10,15 @@ Version:                1.1.0
 %global goname squealer
 
 %global common_description %{expand:
-Telling tales on you for leaking secrets!}
+Scans a local git repository for secrets that are being leaked deep within the
+commit history.}
 
 %global golicenses      LICENSE
 %global godocs          README.md
 
 Name:           %{goname}
 Release:        %autorelease
-Summary:        Telling tales on you for leaking secrets
+Summary:        Scans a local git repository for secrets within the commit history
 
 License:        Unlicense
 URL:            %{gourl}
