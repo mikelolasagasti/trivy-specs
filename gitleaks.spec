@@ -2,7 +2,8 @@
 %bcond_without check
 
 # https://github.com/zricethezav/gitleaks
-%global goipath         github.com/zricethezav/gitleaks
+%global forgeurl        https://github.com/zricethezav/gitleaks
+%global goipath         github.com/zricethezav/gitleaks/v8
 Version:                8.9.0
 
 %gometa
@@ -35,7 +36,7 @@ BuildRequires:  git-core
 %go_generate_buildrequires
 
 %build
-export LDFLAGS="-X =github.com/zricethezav/gitleaks/v8/cmd.Version=%{version}"
+#export LDFLAGS="-X =github.com/zricethezav/gitleaks/v8/cmd.Version=%{version}"
 
 %gobuild -o %{gobuilddir}/bin/gitleaks %{goipath}
 %{gobuilddir}/bin/%{name} completion bash > %{name}.bash
