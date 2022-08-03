@@ -3,7 +3,7 @@
 
 # https://github.com/zricethezav/gitleaks
 %global goipath         github.com/zricethezav/gitleaks
-Version:                8.2.7
+Version:                8.9.0
 
 %gometa
 
