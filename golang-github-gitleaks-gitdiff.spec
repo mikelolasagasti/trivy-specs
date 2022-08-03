@@ -4,7 +4,7 @@
 
 # https://github.com/gitleaks/go-gitdiff
 %global goipath         github.com/gitleaks/go-gitdiff
-Version:                0.7.4
+Version:                0.7.6
 
 %gometa
 
