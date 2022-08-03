@@ -34,11 +34,19 @@ Source0:        %{gosource}
 
 %build
 %gobuild -o %{gobuilddir}/bin/gitleaks %{goipath}
+%{gobuilddir}/bin/%{name} completion bash > %{name}.bash
+%{gobuilddir}/bin/%{name} completion fish > %{name}.fish
+%{gobuilddir}/bin/%{name} completion zsh  > %{name}.zsh
+
 
 %install
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -Dp %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dp %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+
 
 %if %{with check}
 %check
@@ -49,6 +57,16 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license LICENSE
 %doc examples README.md
 %{_bindir}/*
+%dir %{_datadir}/bash-completion
+%dir %{_datadir}/bash-completion/completions
+%{_datadir}/bash-completion/completions/%{name}
+%dir %{_datadir}/fish
+%dir %{_datadir}/fish/vendor_completions.d
+%{_datadir}/fish/vendor_completions.d/%{name}.fish
+%dir %{_datadir}/zsh
+%dir %{_datadir}/zsh/site-functions
+%{_datadir}/zsh/site-functions/_%{name}
+
 
 %gopkgfiles
 
