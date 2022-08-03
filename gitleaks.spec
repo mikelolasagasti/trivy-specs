@@ -21,6 +21,8 @@ License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
+BuildRequires:  git-core
+
 %description
 %{common_description}
 
